@@ -1,0 +1,26 @@
+[
+  {
+    "name": "kfc",
+    "id": "1",
+    "cuisine": "Burger, Fast Food",
+    "imgURL": "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/RX_THUMBNAIL/IMAGES/VENDOR/2025/10/17/31776ab3-2307-49e0-87b2-9e95a3964648_16064.JPG",
+    "avgRating": "3.5",
+    "deliveryTime": "38 mins"
+  },
+  {
+    "name": "Pizza Hut",
+    "id": "2",
+    "cuisine": "Pizza, Fast Food",
+    "imgURL": "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/RX_THUMBNAIL/IMAGES/VENDOR/2025/9/1/40c788ca-599d-4714-b5ba-7d960d482631_651013.JPG",
+    "avgRating": "4.5",
+    "deliveryTime": "20 mins"
+  },
+  {
+    "name": "McDonald's",
+    "id": "3",
+    "imgURL": "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/RX_THUMBNAIL/IMAGES/VENDOR/2025/10/3/6132c9b5-d099-49e4-b7c1-644952843ee3_608346.JPG",
+    "cuisine": "Burgers, Beverages, cafe, Desserts",
+    "avgRating": "4.5",
+    "deliveryTime": "25 mins"
+  }
+]
