@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 // import restaurantsList from "../utils/mockData.json";
 import { DATA_API_URL } from "../utils/constants";
 import ShimmerEffect from "./ShimmerEffect";
+import {Link, useParams} from "react-router";
 
 const Body = () => {
   //state variable --> super powerful
@@ -34,7 +35,7 @@ const Body = () => {
   };
 
   //conditional rendering..
-  if (restList.length === 0) {
+  if (restList?.length === 0) {
     return <ShimmerEffect />;
   }
 
@@ -78,7 +79,9 @@ const Body = () => {
 
       <div className="resto-container">
         {filterRestList.map((restaurant, indx) => (
-          <RestoCard key={restaurant?.info?.id} restData={restaurant} />
+          <Link to={"restaurant/" + restaurant?.info?.id} key={restaurant?.info?.id}>
+            <RestoCard  restData={restaurant} />
+          </Link>
         ))}
       </div>
     </div>

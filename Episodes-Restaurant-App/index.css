@@ -40,6 +40,14 @@
   font-size: 1rem;
 }
 
+.footer-container{
+   display: flex;
+  gap: 2rem;
+  justify-content: space-around;
+  border: 1px solid black;
+  margin: 2px;
+}
+
 .search-box {
   padding: 0.3rem;
   font-size: 1rem;
@@ -89,6 +97,13 @@
   word-wrap: break-word;
 }
 
+.resto-container a {
+  color: inherit;
+  text-decoration: none;
+  background: none;
+  outline: none;
+}
+
 .shimmerCards-container {
   display: flex;
   flex-wrap: wrap;
@@ -100,4 +115,59 @@
   width: 200px;
   height: 350;
   background-color: rgb(227, 232, 236);
+}
+
+.restaurant-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  padding: 24px;
+  margin: 24px auto;
+  max-width: 400px;
+  text-align: center;
+}
+.restaurant-img{
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 16px;
+  object-fit: cover;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.restaurant-name {
+  font-size: 2rem;
+  color: #2d3748;
+  margin-bottom: 12px;
+}
+
+.restaurant-rating {
+  font-size: 1.1rem;
+  color: #0e0a06;
+  margin-bottom: 8px;
+}
+
+.restaurant-status {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.restaurant-status.open {
+  color: #38a169;
+}
+
+.restaurant-status.closed {
+  color: #e53e3e;
+}
+
+.restaurant-locality {
+  color: #718096;
+  margin-bottom: 8px;
+}
+
+.restaurant-cuisines {
+  color: #4a5568;
+  font-style: italic;
 }
