@@ -90,3 +90,12 @@ npx parcel build index.html
 # Types of routing
 -   Client side rounting : All the pages are compoents so based on routes that Component is render on UI this make the single page app in react. 
 -   Server side rounting : Browser makes the https request to get the web page from server when user clicks on different routes 
+
+# Lazy loading / Dynamic import
+-   All JS code goes as a single file to browser after bundling by bundler and if there are 1000+ componets in 
+    our app them that single js file will be too large in size to process by browser and render the componets 
+
+-   So to optimized performace we have to split some functionaliy of components into different bundles. is called as 
+    code splitting, Chuncking ,lazy loading, dynamic loading, on demand loading , dynamic import
+    `const About = lazy(() => import("./components/About")); `
+    `<Suspense fallback={<h1>Loading...</h1>}> <About />{" "} </Suspense> `
