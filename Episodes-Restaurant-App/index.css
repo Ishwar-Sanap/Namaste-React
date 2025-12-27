@@ -40,8 +40,8 @@
   font-size: 1rem;
 }
 
-.footer-container{
-   display: flex;
+.footer-container {
+  display: flex;
   gap: 2rem;
   justify-content: space-around;
   border: 1px solid black;
@@ -120,13 +120,13 @@
 .restaurant-card {
   background: #fff;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   padding: 24px;
   margin: 24px auto;
   max-width: 400px;
   text-align: center;
 }
-.restaurant-img{
+.restaurant-img {
   width: 100%;
   max-width: 350px;
   height: auto;
@@ -170,4 +170,19 @@
 .restaurant-cuisines {
   color: #4a5568;
   font-style: italic;
+}
+
+.user-info {
+  margin: 1rem;
+  margin-left: 0;
+  padding: 1rem;
+  background-color: #d7e0ee;
+}
+
+.user-action-container {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: flex-start;
 }

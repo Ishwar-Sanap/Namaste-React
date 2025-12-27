@@ -36,6 +36,19 @@ npx parcel build index.html
 -   export const Component
 -   import {Component} from "path"
 
+# What is JSX & How Code is render on UI ?
+-   JSX (JavaScript XML) ==> HTML-like syntax for creating elements
+-   JSX --> Babel transpile it to React.createElement() --> ReactElement is object --> render() method converts object into HTML Element
+-   ex: `const heading = <h1>Hello, world!</h1>;`  JSX code gets transpiled into standard JavaScript that the browser can understand: 
+-   `const heading = React.createElement('h1', null, 'Hello, world!');`
+-   `const root = ReactDOM.createRoot(document.getElementById("root"));`
+-   `root.render(heading);`
+
+# Types of React Component
+-   Functional (Modern way most recommended) : It is javascript function that returns the piece of JSX code 
+-   Class Based (older way ) : It is javascript class that extends React.Component 
+        there should be render() method define in your class that returns JSX.
+
 # React Hooks
 -   Hooks are functions that let you "hook into" React state and lifecycle features from functional components.
 -   Ex: useState() , useEffect(), useContext()
@@ -46,8 +59,17 @@ npx parcel build index.html
     -   Without dependency array : Runs after every render.
     -   With dependency array : runs uns when dependencies changes
     -   [] empty dependency array : runs only once after the initial render.
+-   The useEffect hook in React can return an optional cleanup function
     
+# How React efficiently updates the Real DOM 
+-   React uses a Fiber-based virtual DOM.
+    - When state changes, `React schedules an update and re-renders the component to produce a new Fiber tree (new virtual DOM )`.
+    - During reconciliation, React compares the new Fiber tree /virtual DOM with the previous one using a heuristic diffing algorithm.
+    - React builds an effect list describing the minimal set of changes.
+    - In the commit phase, React applies only those changes to the real DOM using native DOM APIs.
 
+# State updates in React 
+-   states are ASYNCHRONOUS and `State updates are SCHEDULED, not applied immediately `
 
 # Shimmer UI: A Better Way to Show Loading States
 -   A shimmer UI is a version of the UI that doesn’t contain actual content, but instead mimics the layout and shapes of the content that will eventually appear.
