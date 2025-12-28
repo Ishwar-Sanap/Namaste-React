@@ -5,18 +5,17 @@ const RestoCard = (props) => {
     props?.restData?.info;
 
   return (
-    <div className="resto-card">
+   <div className="w-80 bg-gray-200 rounded-2xl transition-transform duration-200 hover:scale-105 hover:shadow-3xl">
       <img
         src={REST_IMG_URL + cloudinaryImageId}
         alt="resto-img"
-        className="resto-img"
+        className="w-full h-60 rounded-2xl object-cover "
       />
-      <div className="resto-card-details">
-        <h2>{name}</h2>
-        <p className="card-info">{cuisines.join(",")}</p>
-        <p className="card-info">{costForTwo}</p>
-        <p className="card-info">{avgRating} ⭐</p>
-        <p className="card-info">Delivery Time : {sla.slaString}</p>
+      <div className="p-2">
+        <h2 className="text-xl font-semibold">{name} ({avgRating} ⭐)</h2>
+        <p className="font-light italic">{cuisines.join(",")}</p>
+        <p className="">Delivery Time : {sla.slaString}</p>
+        <p className="text-xl font-semibold">{costForTwo}</p>
       </div>
     </div>
   );

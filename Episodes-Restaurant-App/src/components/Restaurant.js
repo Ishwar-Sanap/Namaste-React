@@ -7,6 +7,7 @@ import {
 } from "../utils/constants";
 import ShimmerEffect from "./ShimmerEffect";
 import userRestaurants from "../utils/useRestaurants";
+import ShimmerCard from "./ShimmerCard";
 
 const Restaurant = () => {
   const { restID } = useParams(); // This hook use to take value dynamically from URL
@@ -20,35 +21,41 @@ const Restaurant = () => {
   when the data is fetched in your custom hook.
   */
 
-  if (!restData) {
-    return <ShimmerEffect />;
+ if (!restData) {
+    return <ShimmerCard cardType={"restaurantMenu"} />;
   }
 
-  return (
-    <div className="restaurant-card">
-      <img
-        src={REST_IMG_URL + restData.cloudinaryImageId}
-        alt="resto-img"
-        className="restaurant-img"
-      />
-      <h2 className="restaurant-name">{restData.name}</h2>
-      <p className="restaurant-rating">
-        {restData.avgRatingString + "⭐"}{" "}
-        {`( Total ratings : ${restData.totalRatingsString} )`}
-      </p>
-      <p
-        className={`restaurant-status ${
-          restData.availability.opened ? "open" : "closed"
-        }`}
-      >
-        {restData.availability.opened
-          ? "Closing time : " + restData.availability.nextCloseTime
-          : "Closed Now"}
-      </p>
-      <p className="restaurant-locality">{"📍" + restData.locality}</p>
-      <p className="restaurant-cuisines">{restData.cuisines.join(", ")}</p>
+return (
+  <div className=" flex items-center justify-center m-5 ">
+    <div className="bg-white rounded-3xl shadow-2xl flex flex-col md:flex-row max-w-4xl w-full overflow-hidden">
+      <div className="w-full">
+        <img
+          src={REST_IMG_URL + restData.cloudinaryImageId}
+          alt="resto-img"
+          className="h-full w-full object-cover"
+        />
+      </div>
+      <div className="w-full p-8 flex flex-col justify-center">
+        <h2 className="text-3xl font-bold mb-4 text-gray-800">{restData.name}</h2>
+        <p className="text-lg text-yellow-600 mb-2">
+          {restData.avgRatingString + "⭐"}{" "}
+          {`( Total ratings : ${restData.totalRatingsString} )`}
+        </p>
+        <p
+          className={`restaurant-status mb-2 font-semibold ${
+            restData.availability.opened ? "text-green-600" : "text-red-600"
+          }`}
+        >
+          {restData.availability.opened
+            ? "Closing time : " + restData.availability.nextCloseTime
+            : "Closed Now"}
+        </p>
+        <p className="text-gray-500 mb-2">{"📍" + restData.locality}</p>
+        <p className="text-gray-700 italic">{restData.cuisines.join(", ")}</p>
+      </div>
     </div>
-  );
+  </div>
+);
 };
 
 export default Restaurant;

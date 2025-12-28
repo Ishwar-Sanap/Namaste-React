@@ -49,18 +49,19 @@ const Body = () => {
   }
 
   return (
-    <div className="main-container">
-      <div className="filter-btns">
+    <div className="flex-col">
+      
+      <div className="mx-20 my-5 flex justify-start gap-3">
         <input
           name="searchInput"
           type="text"
-          placeholder="search restaurants"
-          className="search-box"
+          placeholder="Search restaurants"
+          className="border px-2 rounded-xl text-l"
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
         />
         <button
-          className="btn search-btn"
+          className="px-3 py-2  bg-green-300 rounded-xl hover:cursor-pointer hover:bg-green-200"
           onClick={() => {
             //Search filter should be applied on all the data not subset of filtered data
             const filteredRest = restList.filter((rest) =>
@@ -72,7 +73,7 @@ const Body = () => {
           Search
         </button>
         <button
-          className="btn"
+          className="px-3 py-2 bg-red-300 rounded-xl hover:cursor-pointer hover:bg-red-200"
           onClick={() => {
             const filterList = restList.filter(
               (rest) => rest?.info?.avgRating > 4.2
@@ -85,7 +86,7 @@ const Body = () => {
         </button>
       </div>
 
-      <div className="resto-container">
+      <div className="mx-20 p-3 flex gap-3 flex-wrap">
         {filterRestList.map((restaurant, indx) => (
           <Link
             to={"restaurant/" + restaurant?.info?.id}
@@ -95,6 +96,7 @@ const Body = () => {
           </Link>
         ))}
       </div>
+
     </div>
   );
 };

@@ -8,24 +8,43 @@ const Header = () => {
   const online = useOnlineStatus();
 
   return (
-    <div className="header-container">
-      <div className="logo-container">
-        <img src={LOGO_URL} alt="Logo" className="logo" />
+    <div className="w-full flex justify-between items-center shadow-lg bg-gray-100">
+      <div className="w-30 ">
+        <Link to="/">
+         <img src={LOGO_URL} alt="Logo" className="rounded-full" />
+        </Link>
       </div>
 
-      <div className="nav-container">
-        <ul className="nav-items">
-          <li>
-            <Link to="/">Home</Link>
+      <div>
+        <ul className="flex mx-5 gap-6">
+          <li className="text-2xl"> {online ? "Online ✅" : "Offline 🚫"}</li>
+          <li className="text-2xl">
+            <Link
+              to="/"
+              className="hover:text-red-500 hover:underline underline-offset-4 px-2 py-1 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-red-300"
+            >
+              Home
+            </Link>
           </li>
-          <li>
-            <Link to="/about">About</Link>
+          <li className="text-2xl">
+            <Link
+              to="/about"
+              className="hover:text-red-500 hover:underline underline-offset-4 px-2 py-1 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-red-300"
+            >
+              About
+            </Link>
           </li>
-          <li> <Link to="/contact">Contact</Link></li>
-          <li> {online ? "Online ✅" : "Offline 🚫"}</li>
-          <li>Cart</li>
+          <li className="text-2xl">
+            <Link
+              to="/contact"
+              className="hover:text-red-500 hover:underline underline-offset-4 px-2 py-1 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-red-300"
+            >
+              Contact
+            </Link>
+          </li>
+          <li className="text-2xl">Cart</li>
           <button
-            className="btn btn-login"
+            className="px-4 text-xl w-20 text-white transition bg-red-500 rounded-xl hover:cursor-pointer hover:bg-red-600"
             onClick={() => {
               loginBtn === "Login"
                 ? setLoginBtn("Logout")

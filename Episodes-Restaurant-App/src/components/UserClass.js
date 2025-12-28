@@ -62,15 +62,15 @@ class UserClass extends React.Component {
     console.log(this.props.name + "render called");
     const { count, userData } = this.state;
     return (
-      <div className="user-info">
-        <h2>{userData.name}</h2>
-        <p>{userData.bio}</p>
-        <p>{userData.location}</p>
+      <div className="bg-white rounded-xl shadow-lg p-6 max-w-sm mx-auto text-center mt-10">
+        <h2 className="text-2xl font-bold text-gray-800 mb-2">{userData.name}</h2>
+        <p className="text-gray-600 mb-1">{userData.bio}</p>
+        <p className="text-gray-500 mb-4">{userData.location}</p>
 
-        <div className="user-action-container">
-          <span>Count : {count}</span>
+        <div className="flex items-center justify-center gap-4 mt-4">
+          <span className="text-lg font-medium">Count : {count}</span>
           <button
-            className="btn"
+            className="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600 transition"
             onClick={() => {
               this.setState({
                 count: this.state.count + 1,
@@ -80,7 +80,7 @@ class UserClass extends React.Component {
             Increase
           </button>
           <button
-            className="btn "
+            className="bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600 transition"
             onClick={() => {
               this.setState({
                 count: this.state.count - 1,
