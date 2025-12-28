@@ -6,31 +6,19 @@ import {
   REST_IMG_URL,
 } from "../utils/constants";
 import ShimmerEffect from "./ShimmerEffect";
+import userRestaurants from "../utils/useRestaurants";
 
 const Restaurant = () => {
   const { restID } = useParams(); // This hook use to take value dynamically from URL
 
-  const [restData, setRestData] = useState(null);
-
-  useEffect(() => {
-    fetchMenu();
-  }, []);
-
-  const fetchMenu = async () => {
-    const proxyURL = "https://proxy.corsfix.com/?"; // to aovid cors error
-    // const resp = await fetch(proxyURL + REST_MENU_API_URL + restID);
-    //above API is not working of fetching the restaurant menu.. :((
-
-    const resp = await fetch(proxyURL + DATA_API_URL);
-    const resJSON = await resp.json();
-
-    const restListData =
-      resJSON?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants;
-
-    const restaurant = restListData.filter((rest) => rest?.info?.id === restID);
-    setRestData(restaurant[0]?.info);
-  };
+  //creating custom hook for managing API call to get data of restaurants to ensure single responsibility principle of component..
+  const restData = userRestaurants(restID);
+  /*
+  React’s state hooks are tied to the component that calls the custom hook. 
+  When the state in the hook changes, React re-renders the parent component, 
+  updating the UI with the new data. This is why your Restaurant component updates automatically 
+  when the data is fetched in your custom hook.
+  */
 
   if (!restData) {
     return <ShimmerEffect />;

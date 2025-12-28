@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 // import restaurantsList from "../utils/mockData.json";
 import { DATA_API_URL } from "../utils/constants";
 import ShimmerEffect from "./ShimmerEffect";
-import {Link, useParams} from "react-router";
+import { Link, useParams } from "react-router";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
   //state variable --> super powerful
@@ -15,7 +16,6 @@ const Body = () => {
   // it automatically re-renders the whole component with updated value
 
   useEffect(() => {
-    console.log("use effect called..");
     fetchData();
   }, []);
 
@@ -34,12 +34,20 @@ const Body = () => {
     setFilterRestList(restListData);
   };
 
+  const online = useOnlineStatus();
+  if (online === false) {
+    return (
+      <h2>
+        Looks like you're offile !! please check your internet connection..
+      </h2>
+    );
+  }
+
   //conditional rendering..
   if (restList?.length === 0) {
     return <ShimmerEffect />;
   }
 
-  console.log("body rendered");
   return (
     <div className="main-container">
       <div className="filter-btns">
@@ -79,8 +87,11 @@ const Body = () => {
 
       <div className="resto-container">
         {filterRestList.map((restaurant, indx) => (
-          <Link to={"restaurant/" + restaurant?.info?.id} key={restaurant?.info?.id}>
-            <RestoCard  restData={restaurant} />
+          <Link
+            to={"restaurant/" + restaurant?.info?.id}
+            key={restaurant?.info?.id}
+          >
+            <RestoCard restData={restaurant} />
           </Link>
         ))}
       </div>
