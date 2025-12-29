@@ -99,3 +99,26 @@ npx parcel build index.html
     code splitting, Chuncking ,lazy loading, dynamic loading, on demand loading , dynamic import
     `const About = lazy(() => import("./components/About")); `
     `<Suspense fallback={<h1>Loading...</h1>}> <About />{" "} </Suspense> `
+
+# Higher Order Components 
+-   Higher order component is a function that takes a component and returns a component. 
+-   It takes a component as an input, enhances that component, adds some features into it and returns the component. 
+-   Higher order components are pure functions because they do not change the existing behavior of the input component.
+
+# Uncontrolled Components 
+-   If a component is managing its own state and controlling the behavior on its own then the component will be known as Uncontrolled component. 
+
+# Controlled Component 
+-   If the state and behavior of a component is being managed by its parent component, then it is referred to as the controlled component 
+
+# Context API
+-   The Context API is a built-in React feature designed to share "global" data across a component tree without 
+    having to pass props down manually at every level—a problem commonly known as prop drilling.
+-   Prop drilling : Imagine you have a User object at the top of your app (App.js) and a Profile component deep inside the navigation bar. 
+    To get the user data to the profile, you’d have to pass it through every intermediate component, even if they don't need it.
+-   Steps: 
+        `1)React.createContext():  Will create the context.`
+        `2)Provider: This component wraps the part of your app that needs the data. It "provides" the value.`
+        `3)useContext(): This is the hook used by any child component to "plug in" and pull the data out.`
+
+-   When the value of a Provider changes, every component that uses useContext for that specific context will re-render.

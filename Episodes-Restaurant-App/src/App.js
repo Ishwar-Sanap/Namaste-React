@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useState } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -8,14 +8,18 @@ import { createBrowserRouter, Outlet, RouterProvider } from "react-router";
 import Contact from "./components/Contact";
 import Error from "./components/Error";
 import Restaurant from "./components/Restaurant";
+import UserContext from "./utils/UserContext";
 
 const AppLayout = () => {
+  const [userName , setUserName] = useState("default")
   return (
     <div className="app-layout">
-      <Header />
-      <Outlet />{" "}
-      {/* Outlet will be replaced by the specific children component based on the url path..  */}
-      <Footer />
+      <UserContext.Provider value={{loggedInUserName : userName, setUserName}}>
+        <Header />
+        <Outlet />
+        {/* Outlet will be replaced by the specific children component based on the url path..  */}
+        <Footer />
+      </UserContext.Provider>
     </div>
   );
 };

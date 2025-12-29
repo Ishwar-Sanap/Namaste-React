@@ -1,4 +1,4 @@
-import RestoCard from "./RestoCard";
+import RestoCard, { restoCardWithDiscount } from "./RestoCard";
 import { useEffect, useState } from "react";
 // import restaurantsList from "../utils/mockData.json";
 import { DATA_API_URL } from "../utils/constants";
@@ -48,6 +48,8 @@ const Body = () => {
     return <ShimmerEffect />;
   }
 
+  const RestoCardDiscounted = restoCardWithDiscount(RestoCard);
+
   return (
     <div className="flex-col">
       
@@ -92,7 +94,10 @@ const Body = () => {
             to={"restaurant/" + restaurant?.info?.id}
             key={restaurant?.info?.id}
           >
-            <RestoCard restData={restaurant} />
+            {
+              restaurant?.info?.aggregatedDiscountInfoV3 ?  <RestoCardDiscounted restData={restaurant} /> :  <RestoCard restData={restaurant} />
+            }
+           
           </Link>
         ))}
       </div>

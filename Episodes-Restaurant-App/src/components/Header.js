@@ -1,11 +1,16 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router";
 import { LOGO_URL } from "../utils/constants";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 const Header = () => {
   const [loginBtn, setLoginBtn] = useState("Login");
   const online = useOnlineStatus();
+
+  // useContext Accepts a context object (the value returned from React.createContext) and returns the current context value, 
+  // as given by the nearest context provider for the given context.
+  const {loggedInUserName} = useContext(UserContext)
 
   return (
     <div className="w-full flex justify-between items-center shadow-lg bg-gray-100">
@@ -53,6 +58,7 @@ const Header = () => {
           >
             {loginBtn}
           </button>
+          <li className="text-xl">{loggedInUserName}</li>
         </ul>
       </div>
     </div>
