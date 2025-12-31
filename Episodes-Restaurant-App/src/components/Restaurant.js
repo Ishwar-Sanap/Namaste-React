@@ -8,10 +8,12 @@ import {
 import ShimmerEffect from "./ShimmerEffect";
 import userRestaurants from "../utils/useRestaurants";
 import ShimmerCard from "./ShimmerCard";
+import MenuList from "./MenuList";
+import menuItems from "../utils/mockRestaurantsMenu.json";
 
 const Restaurant = () => {
   const { restID } = useParams(); // This hook use to take value dynamically from URL
-
+  const [showMenu, setShowMenu] = useState(true);
   //creating custom hook for managing API call to get data of restaurants to ensure single responsibility principle of component..
   const restData = userRestaurants(restID);
   /*
@@ -21,41 +23,48 @@ const Restaurant = () => {
   when the data is fetched in your custom hook.
   */
 
- if (!restData) {
+  if (!restData) {
     return <ShimmerCard cardType={"restaurantMenu"} />;
   }
 
-return (
-  <div className=" flex items-center justify-center m-5 ">
-    <div className="bg-white rounded-3xl shadow-2xl flex flex-col md:flex-row max-w-4xl w-full overflow-hidden">
-      <div className="w-full">
-        <img
-          src={REST_IMG_URL + restData.cloudinaryImageId}
-          alt="resto-img"
-          className="h-full w-full object-cover"
-        />
+  return (
+     <div className="flex-col w-[40%] mx-auto my-5">
+      <div className="flex   px-10 rounded-3xl gap-10 ">
+        <div className="">
+          <img
+            src={REST_IMG_URL + restData.cloudinaryImageId}
+            alt="resto-img"
+            className="h-40 rounded-xl"
+          />
+        </div>
+
+        <div>
+          <h2 className=" font-bold mb-4 text-gray-800">{restData.name}</h2>
+          <p className=" mb-2">
+            {restData.avgRatingString + "⭐"}{" "}
+            {`( Total ratings : ${restData.totalRatingsString} )`}
+          </p>
+          <p
+            className={`restaurant-status mb-2 font-semibold ${
+              restData.availability.opened ? "text-green-600" : "text-red-600"
+            }`}
+          >
+            {restData.availability.opened
+              ? "Closing time : " + restData.availability.nextCloseTime
+              : "Closed Now"}
+          </p>
+        </div>
       </div>
-      <div className="w-full p-8 flex flex-col justify-center">
-        <h2 className="text-3xl font-bold mb-4 text-gray-800">{restData.name}</h2>
-        <p className="text-lg text-yellow-600 mb-2">
-          {restData.avgRatingString + "⭐"}{" "}
-          {`( Total ratings : ${restData.totalRatingsString} )`}
-        </p>
-        <p
-          className={`restaurant-status mb-2 font-semibold ${
-            restData.availability.opened ? "text-green-600" : "text-red-600"
-          }`}
-        >
-          {restData.availability.opened
-            ? "Closing time : " + restData.availability.nextCloseTime
-            : "Closed Now"}
-        </p>
-        <p className="text-gray-500 mb-2">{"📍" + restData.locality}</p>
-        <p className="text-gray-700 italic">{restData.cuisines.join(", ")}</p>
-      </div>
+
+      {showMenu && (
+        <div className="w-full my-5   bg-white rounded-2xl shadow-lg p-6 flex flex-col  gap-4">
+          {menuItems.map((restoMenu) => (
+            <MenuList key={restoMenu.itemID} menu={restoMenu} />
+          ))}
+        </div>
+      )}
     </div>
-  </div>
-);
+  );
 };
 
 export default Restaurant;

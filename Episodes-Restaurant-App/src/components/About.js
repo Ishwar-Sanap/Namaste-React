@@ -15,7 +15,7 @@ class About extends React.Component {
   render() {
     // console.log("Parent render");
     return (
-      <div className="main-container">
+      <div className="main-container min-h-[calc(100vh-260px)]">
         <UserClass name={"Child1 "} location={"Darjeeling"} />
         
       </div>

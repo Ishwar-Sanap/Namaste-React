@@ -1,0 +1,74 @@
+[
+  {
+    "itemID": 22,
+    "itemName": "Vegetable Biryani",
+    "itemDescription": "Aromatic rice cooked with fresh vegetables and spices.",
+    "itemPrice": 300,
+    "restaurantName": "Grand Hotel",
+    "restaurantID": 10,
+    "imageUrl": "https://fakerestaurantapi.runasp.net/images/vegetable%20biryani.jpg"
+  },
+  {
+    "itemID": 40,
+    "itemName": "Berry Pulav",
+    "itemDescription": "A unique Parsi dish made with rice and fresh berries.",
+    "itemPrice": 400,
+    "restaurantName": "Britannia & Co.",
+    "restaurantID": 16,
+    "imageUrl": "https://fakerestaurantapi.runasp.net/images/berry%20pulav.jpeg"
+  },
+  {
+    "itemID": 41,
+    "itemName": "Sali Boti",
+    "itemDescription": "Parsi-style meat cooked with gravy and served with crisp fries.",
+    "itemPrice": 500,
+    "restaurantName": "Britannia & Co.",
+    "restaurantID": 16,
+    "imageUrl": "https://fakerestaurantapi.runasp.net/images/sali%20boti.jpg"
+  },
+  {
+    "itemID": 42,
+    "itemName": "Raspberry Sorbet",
+    "itemDescription": "Tangy sorbet made with fresh raspberries.",
+    "itemPrice": 150,
+    "restaurantName": "Britannia & Co.",
+    "restaurantID": 16,
+    "imageUrl": "https://fakerestaurantapi.runasp.net/images/raspberry-sorbet.webp"
+  },
+  {
+    "itemID": 28,
+    "itemName": "Butter Chicken",
+    "itemDescription": "Creamy chicken cooked in a tomato-based sauce.",
+    "itemPrice": 500,
+    "restaurantName": "Indian Accent",
+    "restaurantID": 12,
+    "imageUrl": "https://fakerestaurantapi.runasp.net/images/butter%20chicken.jpg"
+  },
+  {
+    "itemID": 29,
+    "itemName": "Dal Makhani",
+    "itemDescription": "Black lentils cooked with butter and cream.",
+    "itemPrice": 300,
+    "restaurantName": "Indian Accent",
+    "restaurantID": 12,
+    "imageUrl": "https://fakerestaurantapi.runasp.net/images/Dal-Makhani.webp"
+  },
+  {
+    "itemID": 30,
+    "itemName": "Gulab Jamun",
+    "itemDescription": "Deep-fried dough balls soaked in sugary syrup.",
+    "itemPrice": 150,
+    "restaurantName": "Indian Accent",
+    "restaurantID": 12,
+    "imageUrl": "https://fakerestaurantapi.runasp.net/images/Gulab-Jamun.jpg"
+  },
+  {
+    "itemID": 24,
+    "itemName": "Lassi",
+    "itemDescription": "Traditional yogurt-based drink, served sweet or salted.",
+    "itemPrice": 120,
+    "restaurantName": "Grand Hotel",
+    "restaurantID": 10,
+    "imageUrl": "https://fakerestaurantapi.runasp.net/images/lasi.webp"
+  }
+]

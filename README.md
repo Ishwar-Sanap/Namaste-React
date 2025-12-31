@@ -60,7 +60,14 @@ npx parcel build index.html
     -   With dependency array : runs uns when dependencies changes
     -   [] empty dependency array : runs only once after the initial render.
 -   The useEffect hook in React can return an optional cleanup function
+-   React’s state hooks are tied to the component that calls the custom hook. When the state in the hook changes, React re-renders the parent component 
+    updating the UI with the new data.
     
+# UI Layer & Data Layer
+-   When you build a React frontend app, it’s helpful to think in layers. Two of the most important ones are the UI layer and the Data layer. 
+-   UI Layer : Focuses on rendering and user interaction. It receives data via props and renders JSX. (Props in → JSX out)  
+-   Data Layer : Manages states, API calls, and business logic, custom hooks. It supplies data to the UI and reacts to user actions.
+
 # How React efficiently updates the Real DOM 
 -   React uses a Fiber-based virtual DOM.
     - When state changes, `React schedules an update and re-renders the component to produce a new Fiber tree (new virtual DOM )`.
@@ -122,3 +129,17 @@ npx parcel build index.html
         `3)useContext(): This is the hook used by any child component to "plug in" and pull the data out.`
 
 -   When the value of a Provider changes, every component that uses useContext for that specific context will re-render.
+
+# Redux Toolkit (State management library)
+-  There are 2 libraries that Redux team offers: 
+    1.  react-redux: This is like a bridge between React and Redux. 
+    2.  Redux toolkit: This is a newer way of writing redux. This package is intended to be the standard way of writing Redux logic. 
+-Redux Core Concepts
+    1. Store: A single source of truth that holds the entire application state.
+    2. Actions: Plain JavaScript objects that describe what happened (e.g., { type: "INCREMENT" })
+    3. Reducers: Pure functions that take the current state and an action, then return a new state.
+    4. Dispatch: A method to send actions to the store.
+    5. Selectors: Functions that extract specific parts of the state from store.
+-   useSelector & useDispatch – React hooks for accessing state and dispatching actions.
+-   Components subscribed to the Redux store (via useSelector) will automatically re-render with the new state.
+-   Great for large apps with complex state logic

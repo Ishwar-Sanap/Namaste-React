@@ -9,17 +9,22 @@ import Contact from "./components/Contact";
 import Error from "./components/Error";
 import Restaurant from "./components/Restaurant";
 import UserContext from "./utils/UserContext";
+import Cart from "./components/Cart";
+import {Provider} from "react-redux"
+import appStore from "./store/appStore";
 
 const AppLayout = () => {
   const [userName , setUserName] = useState("default")
   return (
     <div className="app-layout">
-      <UserContext.Provider value={{loggedInUserName : userName, setUserName}}>
-        <Header />
-        <Outlet />
-        {/* Outlet will be replaced by the specific children component based on the url path..  */}
-        <Footer />
-      </UserContext.Provider>
+      <Provider store={appStore} > {/* now store is available to access from every component */}
+        <UserContext.Provider value={{loggedInUserName : userName, setUserName}}>
+          <Header />
+          <Outlet />
+          {/* Outlet will be replaced by the specific children component based on the url path..  */}
+          <Footer />
+        </UserContext.Provider>
+      </Provider>
     </div>
   );
 };
@@ -59,6 +64,10 @@ const browserRouter = createBrowserRouter([
         path: "restaurant/:restID",
         element: <Restaurant />,
       },
+      {
+        path: "/cart",
+        element : <Cart/>
+      }
     ],
     errorElement: <Error />,
   },
