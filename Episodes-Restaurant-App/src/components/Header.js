@@ -12,7 +12,7 @@ const Header = () => {
   // useContext Accepts a context object (the value returned from React.createContext) and returns the current context value,
   // as given by the nearest context provider for the given context.
   const { loggedInUserName } = useContext(UserContext);
-  const cartItems = useSelector((state) => state.cart.items.length); //subscribing to store, when state in store changes all subscribed components will re-render
+  const cartItems = useSelector((state) => state.cart.totalItems); //subscribing to store, when state in store changes all subscribed components will re-render
 
   return (
     <div className="w-full flex justify-between items-center shadow-lg bg-gray-100">

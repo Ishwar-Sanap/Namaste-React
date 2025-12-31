@@ -4,17 +4,15 @@ import { addItem, removeItem } from "../store/cartSlice";
 import { useState } from "react";
 
 const MenuList = (props) => {
-  const { itemName, itemDescription, itemPrice, imageUrl } = props.menu;
+  const { itemName, itemID, itemDescription, itemPrice, imageUrl } = props.menu;
   const dispatch = useDispatch();
-  const [quatity, setQuantity] = useState(0);
+  const quantity = useSelector((state)=> state.cart.items[itemID]?.quantity);
 
   const addItemHandler = () => {
-    setQuantity(quatity + 1);
     dispatch(addItem(props.menu));
   };
 
   const removeItemHandler = () => {
-    setQuantity(quatity - 1);
     dispatch(removeItem(props.menu));
   };
   return (
@@ -33,7 +31,7 @@ const MenuList = (props) => {
         </h1>
         <p className="text-gray-600 text-sm italic">{itemDescription}</p>
 
-        {quatity === 0 ? (
+        {!quantity ? (
           <button
             className="bg-gray-600 text-white px-5 my-3 rounded-xl hover:bg-gray-500 hover:cursor-pointer"
             onClick={addItemHandler}
@@ -45,7 +43,7 @@ const MenuList = (props) => {
             <button className="font-bold text-2xl text-gray-500 hover:cursor-pointer" onClick={removeItemHandler}>
               -
             </button>
-            <p className="font-bold text-green-500 ">{quatity}</p>
+            <p className="font-bold text-green-500 ">{quantity}</p>
             <button
               className="font-bold text-xl text-green-500 hover:cursor-pointer"
               onClick={addItemHandler}
