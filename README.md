@@ -143,3 +143,32 @@ npx parcel build index.html
 -   useSelector & useDispatch – React hooks for accessing state and dispatching actions.
 -   Components subscribed to the Redux store (via useSelector) will automatically re-render with the new state.
 -   Great for large apps with complex state logic
+
+# Types of Testing (Developer)
+-   Unit Testing : (Testing individual components in isolation)
+-   Integration Testing : (Testing the interaction between multiple components)
+-   End to End Testing (e2e) : (Testing the entire application flow from start to finish)
+
+# Setting up testing in our APP
+-   Install React Testing Library
+-   Install jest
+-   Install Babel dependancies
+-   Configure Babel (Add--> babel.config.js)
+-   Configure Parcel config file to disable default transpilation (Add --> .parcelrc)
+-   Jest configuration (npm init jest@latest)
+-   Install JSDOM (npm i jest-environment-jsdom)
+-   Install (npm i -D @babel/preset-react) to make JSX work in test cases
+-   Include @babel/preset-react inside my babel config
+-   Install (npm i -D @testing-library/jest-dom )  and use import "@testing-library/jest-dom" in tests files for Assertation
+-   Add jest.setup.js file for resolving `ReferenceError: TextEncoder is not defined and update jest.config.js with setupFilesAfterEnv : ["./jest.setup.js"]`
+
+# Writing Test Cases
+-   Test cases are written inside __tests__ folder
+-   Test file name should be ComponentName.test.js or ComponentName.spec.js
+-   describe() : It is used to group related tests together
+-   test() or it() : It is used to define an individual test case
+-   render() : It is used to render a React component in a test environment
+-   screen : It is a utility provided by React Testing Library to query elements rendered in the virtual DOM
+-   query methods : getByText, getByRole, getByTestId, etc. are used to select elements from the rendered component
+-   expect() : It is used to create assertions about the expected outcome of a test
+-   fireEvent : It is used to simulate user interactions like clicks, typing, etc.
