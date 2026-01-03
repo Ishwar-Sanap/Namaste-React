@@ -18,7 +18,7 @@ const RestoCard = (props) => {
     props?.restData?.info;
 
   return (
-    <div className="w-80 bg-gray-200 rounded-2xl transition-transform duration-200 hover:scale-105 hover:shadow-3xl">
+    <div data-testid="restoCard" className="w-80 bg-gray-200 rounded-2xl transition-transform duration-200 hover:scale-105 hover:shadow-3xl">
       <img
         src={REST_IMG_URL + cloudinaryImageId}
         alt="resto-img"

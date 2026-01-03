@@ -169,6 +169,19 @@ npx parcel build index.html
 -   test() or it() : It is used to define an individual test case
 -   render() : It is used to render a React component in a test environment
 -   screen : It is a utility provided by React Testing Library to query elements rendered in the virtual DOM
--   query methods : getByText, getByRole, getByTestId, etc. are used to select elements from the rendered component
+-   query methods : 
+    -   getByText, getByRole, getByTestId, queryByRole , etc. are used to select elements from the rendered component 
+    -   getBy* methods throw an error if the element is not found, while queryBy* methods return null
 -   expect() : It is used to create assertions about the expected outcome of a test
 -   fireEvent : It is used to simulate user interactions like clicks, typing, etc.
+-   render() from React Testing Library creates a new virtual DOM for each test.
+    How it works:
+    -   Each call to render() mounts your component into a fresh, isolated DOM container (using JSDOM, which simulates a browser environment in Node.js).
+    -   This means the DOM state is reset for every test, so changes in one test do not affect another.
+    -   However, if you share stateful objects (like a Redux store instance) across tests, that state can persist unless you create a new instance for each test.
+
+# Async Testing
+-   When testing asynchronous code, you often need to wait for certain conditions to be met before making assertions.
+-   When your component uses fetch() or any async data fetching, you should mock the fetch call in your tests.
+-   Use async/await with act() to ensure all updates are processed before assertions.
+-   act() is a helper function from React Testing Library that ensures all updates related to your component (like state changes, effects, etc.) are processed before you make assertions.

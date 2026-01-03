@@ -16,7 +16,7 @@ const MenuList = (props) => {
     dispatch(removeItem(props.menu));
   };
   return (
-    <div className="flex items-center gap-4 bg-gray-100 rounded-xl p-4 shadow-sm hover:shadow-md transition">
+    <div data-testid="MenuItem" className="flex items-center gap-4 bg-gray-100 rounded-xl p-4 shadow-sm hover:shadow-md transition">
       <img
         src={imageUrl}
         className="w-20 h-20 object-cover rounded-lg border"

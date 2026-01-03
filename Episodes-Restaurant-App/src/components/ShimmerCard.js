@@ -1,7 +1,6 @@
 import React from "react";
 
 const ShimmerCard = ({ cardType }) => {
-  console.log(cardType);
   if (cardType === "restaurantMenu") {
     return (
       <div className=" flex items-center justify-center m-5 ">

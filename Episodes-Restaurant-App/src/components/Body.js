@@ -56,6 +56,7 @@ const Body = () => {
       <div className="mx-20 my-5 flex justify-start gap-3">
         <input
           name="searchInput"
+          data-testid = "serachInput"
           type="text"
           placeholder="Search restaurants"
           className="border px-2 rounded-xl text-l"
@@ -80,7 +81,7 @@ const Body = () => {
             const filterList = restList.filter(
               (rest) => rest?.info?.avgRating > 4.2
             );
-            console.log("filter rest : ", filterList);
+            // console.log("filter rest : ", filterList);
             setFilterRestList(filterList);
           }}
         >
