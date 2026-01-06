@@ -3,6 +3,15 @@ import Header from "./Header";
 import { checkvalidData } from "../utils/validate";
 import { LuEye } from "react-icons/lu";
 import { LuEyeOff } from "react-icons/lu";
+import { auth } from "../utils/firebase";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
+import { useDispatch } from "react-redux";
+import { updateUser } from "../redux/userSlice";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [signIn, setSignIn] = useState(true);
@@ -11,6 +20,10 @@ const Login = () => {
 
   const email = useRef(null);
   const password = useRef(null);
+  const userName = useRef(null);
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSignIn = () => {
     setSignIn(!signIn);
@@ -20,7 +33,73 @@ const Login = () => {
     e.preventDefault();
 
     const message = checkvalidData(email.current.value, password.current.value);
-    setErrMessage(message);
+    if (message) {
+      if (signIn && message === "Weak password, create strong password")
+        setErrMessage("Invalid Password");
+      else setErrMessage(message);
+
+      return;
+    }
+
+    setErrMessage(null);
+
+    if (!signIn) {
+      //Sign Up Logic
+
+      const handleSignUp = async () => {
+        try {
+          const userCredential = await createUserWithEmailAndPassword(
+            auth,
+            email.current.value,
+            password.current.value
+          );
+          //Adding display UserName
+          await updateProfile(userCredential.user, {
+            displayName: userName.current.value,
+          });
+
+          dispatch(
+            updateUser({
+              displayName: userCredential?.user?.displayName,
+              email: userCredential?.user?.email,
+              uid: userCredential?.user?.uid,
+            })
+          ); // adding user deatails in store to access everywhere..
+          navigate("/browse");
+        } catch (error) {
+          setErrMessage(error.message);
+          console.error("Error signing up:", error.message);
+        }
+      };
+
+      handleSignUp();
+    } else {
+      //sign in Logic
+      const handleSignIn = async () => {
+        console.log(email.current.value, password.current.value);
+        try {
+          const userCredential = await signInWithEmailAndPassword(
+            auth,
+            email.current.value,
+            password.current.value
+          );
+
+          dispatch(
+            updateUser({
+              displayName: userCredential?.user?.displayName,
+              email: userCredential?.user?.email,
+              uid: userCredential?.user?.uid,
+            })
+          ); // adding user deatails in store to access everywhere..
+          navigate("/browse");
+        } catch (error) {
+          console.log(error);
+          setErrMessage("Invalid login credentials");
+        }
+      };
+
+      handleSignIn();
+    }
   };
 
   const handleShowPassword = () => {
@@ -47,6 +126,7 @@ const Login = () => {
           {!signIn && (
             <input
               type="text"
+              ref={userName}
               placeholder="Name"
               className="p-3 rounded w-full text-white bg-gray-700 focus:outline-none focus:ring-2 focus:ring-white"
             />
@@ -69,11 +149,7 @@ const Login = () => {
               className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center hover:cursor-pointer"
               onClick={handleShowPassword}
             >
-              {showPassword ? (
-                <LuEyeOff size={20} />
-              ) : (
-                <LuEye size={20} />
-              )}
+              {showPassword ? <LuEyeOff size={20} /> : <LuEye size={20} />}
             </span>
           </div>
 
