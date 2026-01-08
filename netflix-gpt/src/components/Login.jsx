@@ -11,7 +11,12 @@ import {
 } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { updateUser } from "../redux/userSlice";
-import { useNavigate } from "react-router-dom";
+import {
+  BACKGROUND_IMG_URL,
+  INVALID_CREDENTIALS,
+  INVALID_PASSWORD,
+  WEAK_PASSWORD,
+} from "../utils/constants";
 
 const Login = () => {
   const [signIn, setSignIn] = useState(true);
@@ -22,7 +27,6 @@ const Login = () => {
   const password = useRef(null);
   const userName = useRef(null);
 
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleSignIn = () => {
@@ -34,8 +38,7 @@ const Login = () => {
 
     const message = checkvalidData(email.current.value, password.current.value);
     if (message) {
-      if (signIn && message === "Weak password, create strong password")
-        setErrMessage("Invalid Password");
+      if (signIn && message === WEAK_PASSWORD) setErrMessage(INVALID_PASSWORD);
       else setErrMessage(message);
 
       return;
@@ -65,10 +68,8 @@ const Login = () => {
               uid: userCredential?.user?.uid,
             })
           ); // adding user deatails in store to access everywhere..
-          navigate("/browse");
         } catch (error) {
           setErrMessage(error.message);
-          console.error("Error signing up:", error.message);
         }
       };
 
@@ -91,10 +92,8 @@ const Login = () => {
               uid: userCredential?.user?.uid,
             })
           ); // adding user deatails in store to access everywhere..
-          navigate("/browse");
         } catch (error) {
-          console.log(error);
-          setErrMessage("Invalid login credentials");
+          setErrMessage(INVALID_CREDENTIALS);
         }
       };
 
@@ -110,7 +109,7 @@ const Login = () => {
     <div className="min-h-screen relative">
       <Header />
       <img
-        src="https://assets.nflxext.com/ffe/siteui/vlv3/e8136cfe-c5b7-464f-8c26-d68d676e0916/web/IN-en-20251229-TRIFECTA-perspective_c50c689c-0d42-413b-bd09-f4fc62fbec13_large.jpg"
+        src={BACKGROUND_IMG_URL}
         className="w-full object-cover h-screen"
         alt="Netflix background"
       />

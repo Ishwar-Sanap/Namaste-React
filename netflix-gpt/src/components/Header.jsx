@@ -1,9 +1,9 @@
-import { signOut } from "firebase/auth";
-import React from "react";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import React, { useEffect } from "react";
 import { FaSignOutAlt } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { auth } from "../utils/firebase";
-import { removeUser } from "../redux/userSlice";
+import { removeUser, updateUser } from "../redux/userSlice";
 import { useNavigate } from "react-router-dom";
 
 const Header = () => {
@@ -11,12 +11,38 @@ const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  useEffect(() => {
+
+    //When user sign in or sign out i.e auth state change this event lister will be called..
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        dispatch(
+          updateUser({
+            displayName: user?.displayName,
+            email: user?.email,
+            uid: user?.uid,
+          })
+        );
+
+        //Only navigate to browse when user is signed in..
+        navigate("/browse");
+      } else {
+        // User is signed out go to home page
+        dispatch(removeUser());
+        navigate("/");
+      }
+    });
+
+    //Clean up logic when component unmount..
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
   const handleSignOut = () => {
     signOut(auth)
       .then(() => {
         //Sign Out success
-        dispatch(removeUser());
-        navigate("/");
       })
       .catch((err) => {
         console.log(err);

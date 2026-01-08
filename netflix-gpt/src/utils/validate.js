@@ -1,3 +1,5 @@
+import { INVALID_EMAIL, WEAK_PASSWORD } from "./constants";
+
 export const checkvalidData = (email, password) => {
 
     /*
@@ -20,8 +22,8 @@ export const checkvalidData = (email, password) => {
     const isValidPassword =  /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/.test(password);
 
 
-    if(!isValidEmail) return "Invalid email address";
-    if(!isValidPassword) return "Weak password, create strong password";
+    if(!isValidEmail) return INVALID_EMAIL;
+    if(!isValidPassword) return WEAK_PASSWORD;
 
     return null;
 };
