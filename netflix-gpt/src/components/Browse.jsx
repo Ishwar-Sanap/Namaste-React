@@ -1,10 +1,12 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "./Header";
+import useNowPlayingMovies from "../hooks/useNowPlayingMovies";
 
 const Browse = () => {
-  const user = useSelector((state) => state.user);
 
+  useNowPlayingMovies();
+  
   return (
     <div>
       <Header />
