@@ -1,1 +1,28 @@
 @import "tailwindcss";
+
+/*Custom class for styling horizontal scrollbar*/
+.scrollbar-x {
+  scrollbar-width: none;
+}
+
+.scrollbar-x::-webkit-scrollbar {
+  height: 0px;
+}
+
+/* Show scrollbar on hover */
+.scrollbar-x:hover {
+  scrollbar-width: auto;
+}
+
+.scrollbar-x:hover::-webkit-scrollbar {
+  height: 6px;
+}
+
+.scrollbar-x:hover::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-x:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(224, 67, 67, 0.6);
+  border-radius: 20px;
+}

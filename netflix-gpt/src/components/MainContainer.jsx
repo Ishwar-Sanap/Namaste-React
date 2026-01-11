@@ -10,7 +10,6 @@ const MainContainer = () => {
   //Taking random moive to display on background..
   const randomIndx = Math.floor((Math.random() * movies.length));
   const mainMovie = movies[randomIndx];
-  console.log(mainMovie);
 
   const {original_title , overview, id} = mainMovie;
 

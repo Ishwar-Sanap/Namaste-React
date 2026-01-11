@@ -62,7 +62,20 @@ npx parcel build index.html
 -   The useEffect hook in React can return an optional cleanup function
 -   React’s state hooks are tied to the component that calls the custom hook. When the state in the hook changes, React re-renders the parent component 
     updating the UI with the new data.
-    
+-  Custom Hooks: 
+    -   Custom hooks can call other hooks (built-in or custom).
+    -   It must follow the same rules as regular hooks (e.g., only call hooks at the top level of a function component or another hook).
+    -   It should start with the word "use" to follow React's conventions and enable linting rules.
+    -   IT can return anything (e.g., state variables, functions) just like regular components.
+    -   IT help in reusing stateful logic across multiple components without duplicating code.
+    -   IT do not have a render method and do not return JSX. They are purely for logic and state management.
+    -   NOTE --> Those components that use the custom hook will re-render automatically when the state inside the custom hook changes.
+-   Hooks must be called at the top level of a React function component or another custom hook. 
+    They should not be called inside loops, conditions, or nested functions.
+    # VVIMP NOTE 👉👉: Make sure that Hooks must always be called in same order in every render. This is why they should be at the top level of your component. 
+    # If  you call them conditionally, or you have added some checks that return early, the order may change between renders and breaking the rules of hooks, and it will lead to bugs.
+
+
 # UI Layer & Data Layer
 -   When you build a React frontend app, it’s helpful to think in layers. Two of the most important ones are the UI layer and the Data layer. 
 -   UI Layer : Focuses on rendering and user interaction. It receives data via props and renders JSX. (Props in → JSX out)  

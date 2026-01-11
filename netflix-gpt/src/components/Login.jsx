@@ -77,7 +77,6 @@ const Login = () => {
     } else {
       //sign in Logic
       const handleSignIn = async () => {
-        console.log(email.current.value, password.current.value);
         try {
           const userCredential = await signInWithEmailAndPassword(
             auth,

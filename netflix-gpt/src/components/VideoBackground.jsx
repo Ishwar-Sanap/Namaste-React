@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import useMovieVideos from "../hooks/useMovieVideos";
 import { useDispatch } from "react-redux";
 import { addMovieTrailer } from "../redux/moviesSlice";
@@ -6,13 +6,20 @@ import { addMovieTrailer } from "../redux/moviesSlice";
 const VideoBackground = ({ movieId }) => {
   const dispatch = useDispatch();
   const videos = useMovieVideos(movieId);
-  console.log(videos);
-  if (!videos) return;
 
-  const filterData = videos.filter((video) => video.type === "Trailer");
-  const trailer = filterData.length ? filterData[0] : videos[0];
-  dispatch(addMovieTrailer(trailer));
-  console.log(trailer);
+  const filterData = videos?.filter((video) => video.type === "Trailer");
+  const trailer = filterData?.length ? filterData[0] : videos?.[0];
+
+  useEffect(() => {
+    if (trailer) dispatch(addMovieTrailer(trailer));
+  }, [dispatch, trailer]);
+
+
+  if (!trailer) return null;
+  // It should be always after hooks??
+  // The reason is that hooks need to be called in the same order on every render.
+  // If you put conditional statements before hooks, it can lead to hooks being called in different orders on different renders, which can cause bugs and unexpected behavior.
+  // By placing the conditional return statement after the hooks, you ensure that all hooks are called in the same order regardless of the component's state or props.
 
   return (
     <div className="overflow-hidden">
