@@ -6,13 +6,12 @@ import { auth } from "../utils/firebase";
 import { removeUser, updateUser } from "../redux/userSlice";
 import { useNavigate } from "react-router-dom";
 
-const Header = () => {
+const Header = ({ updateGPTBtn, showGPTSerach }) => {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
-
     //When user sign in or sign out i.e auth state change this event lister will be called..
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -50,20 +49,32 @@ const Header = () => {
       });
   };
 
+  const handleGPTSearch = () => {
+    updateGPTBtn();
+  };
+  console.log(showGPTSerach)
   return (
-    <div className="absolute w-full flex  justify-between bg-linear-to-b from-gray-950  h-20 z-10">
+    <div className="absolute w-full flex  justify-between bg-linear-to-b from-gray-950  h-20 z-30">
       <h1 className="text-4xl  p-5 font-bold text-red-500 ">NETFLIX</h1>
 
       {user && (
-        <button
-          className="bg-red-500 w-30 h-10 my-auto mx-10 rounded-2xl font-bold text-white hover:bg-red-600 hover:cursor-pointer"
-          onClick={handleSignOut}
-        >
-          <span className="flex  items-center justify-center gap-1.5">
-            SignOut
-            <FaSignOutAlt />
-          </span>
-        </button>
+        <div className="flex justify-center items-center">
+          <button
+            className="bg-amber-500 p-2 rounded-2xl text-white font-bold hover:bg-amber-600 hover:cursor-pointer"
+            onClick={handleGPTSearch}
+          >
+            {showGPTSerach ? "GoHome" : "GPTSearch"}
+          </button>
+          <button
+            className="bg-red-500 p-2 my-auto mx-10 rounded-2xl font-bold text-white hover:bg-red-600 hover:cursor-pointer"
+            onClick={handleSignOut}
+          >
+            <span className="flex  items-center justify-center gap-1.5">
+              SignOut
+              <FaSignOutAlt />
+            </span>
+          </button>
+        </div>
       )}
     </div>
   );

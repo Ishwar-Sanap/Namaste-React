@@ -62,6 +62,11 @@ npx parcel build index.html
 -   The useEffect hook in React can return an optional cleanup function
 -   React’s state hooks are tied to the component that calls the custom hook. When the state in the hook changes, React re-renders the parent component 
     updating the UI with the new data.
+-   useRef() : 
+    -   It is a hook that provides a way to access and interact with DOM elements or persist values across renders without causing re-renders.
+    -   It returns a mutable ref object whose .current property is initialized to the passed argument (initialValue).
+    -   The ref object remains the same between renders.
+    -   Common use cases include accessing DOM elements directly, storing mutable values that do not trigger re-renders, and managing focus or text selection.
 -  Custom Hooks: 
     -   Custom hooks can call other hooks (built-in or custom).
     -   It must follow the same rules as regular hooks (e.g., only call hooks at the top level of a function component or another hook).

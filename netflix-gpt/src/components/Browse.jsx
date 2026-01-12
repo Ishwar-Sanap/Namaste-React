@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "./Header";
 import useNowPlayingMovies from "../hooks/useNowPlayingMovies";
@@ -7,6 +7,7 @@ import SecondaryContainer from "./SecondaryContainer";
 import usePopularMovies from "../hooks/usePopularMovies";
 import useTopRatedMovies from "../hooks/useTopRatedMovies";
 import useUpcomingMovies from "../hooks/useUpcomingMovies";
+import GptSearch from "./GptSearch";
 
 const Browse = () => {
   useNowPlayingMovies();
@@ -14,11 +15,19 @@ const Browse = () => {
   useTopRatedMovies();
   useUpcomingMovies();
 
+  const [showGPTSerach, setShowGPTSerach] = useState(false);
+
   return (
     <div>
-      <Header />
-      <MainContainer />
-      <SecondaryContainer />
+      <Header updateGPTBtn ={() => setShowGPTSerach(!showGPTSerach)} showGPTSerach={showGPTSerach} />
+      {showGPTSerach ? (
+        <GptSearch />
+      ) : (
+        <>
+          <MainContainer />
+          <SecondaryContainer />
+        </>
+      )}
     </div>
   );
 };

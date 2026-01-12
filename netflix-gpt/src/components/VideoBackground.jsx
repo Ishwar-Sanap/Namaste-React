@@ -25,7 +25,7 @@ const VideoBackground = ({ movieId }) => {
     <div className="overflow-hidden">
       <iframe
         className="w-screen aspect-video scale-[1.35]"
-        src={`https://www.youtube.com/embed/${trailer?.key}?autoplay=1&mute=1&controls=0&loop=1&playlist=${trailer?.key}`}
+        src={`https://www.youtube.com/embed/${trailer?.key}?autoplay=0&mute=1&controls=0&loop=1&playlist=${trailer?.key}`}
         allow="autoplay; encrypted-media"
         title="YouTube video player"
         referrerPolicy="strict-origin-when-cross-origin"
