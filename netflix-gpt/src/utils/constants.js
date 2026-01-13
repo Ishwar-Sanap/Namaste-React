@@ -9,3 +9,5 @@ export const INVALID_EMAIL = "Invalid email address."
 export const INVALID_CREDENTIALS = "Invalid login credentials."
 
 export const MOVIE_POSTER_CND = "https://image.tmdb.org/t/p/w500/"
+
+export const MOVIE_BACKDROP_CDN = "https://image.tmdb.org/t/p/original/"

@@ -7,14 +7,14 @@ const VideoTitle = ({ title, overview }) => {
         <h1 className="text-5xl font-bold">{title}</h1>
         <p className="py-5 text-sm">{overview}</p>
 
-        <div className="flex gap-3">
+        {/* <div className="flex gap-3">
           <button className="bg-white text-black px-8 py-3 rounded-lg font-semibold hover:opacity-80">
             ▶ Play
           </button>
           <button className="bg-gray-500/70 px-8 py-3 rounded-lg text-white">
             More Info
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import React from "react";
 import MovieCard from "./MovieCard";
+import { NavLink } from "react-router-dom";
 
 const MovieList = ({ title, movies }) => {
   if (!movies || movies.length === 0)
@@ -8,13 +9,17 @@ const MovieList = ({ title, movies }) => {
         <h1 className="text-2xl text-white">No movies found ❌</h1>;
       </div>
     );
+
+
   return (
     <div className="mx-8 py-3">
       <h1 className="text-2xl text-white">{title}</h1>
       <div className="flex overflow-x-scroll scrollbar-x">
         <div className="flex my-5 gap-2  ">
           {movies.map((movie) => (
-            <MovieCard key={movie.id} movie={movie} />
+            <NavLink key={movie.id} to={"/browse/" + movie.id}>
+              <MovieCard movie={movie} />
+            </NavLink>
           ))}
         </div>
       </div>
