@@ -26,6 +26,10 @@ npx parcel build index.html
 -   It converts modern JavaScript code or syntax into older JavaScript code that browser can understand
 -   It converts JSX code into React.createElement() that can be understood by REACT
 
+# Useful react dev tools
+-   React Developer Tools: A browser extension for Chrome and Firefox that allows you to inspect the React component hierarchy, view props and state, and more.
+-   Redux DevTools: A powerful tool for debugging Redux applications, allowing you to inspect actions, state changes, and time travel through state history.
+
 # default export/import
 -   Only one default export per file
 -   export default Component;
@@ -54,19 +58,66 @@ npx parcel build index.html
 -   Ex: useState() , useEffect(), useContext()
 -   Hooks should always be called at top of the React functional component.
 -   State lives in React’s internal memory, NOT inside the function
--   useState() --> It is normal js function with react superpowers to sync of data layer and UI layer, componet will be re-render when state variable changes
--   useEffect(() => { ... }, [dependencies]); runs side effects after rendering the component.
+
+-   useState() :
+    -  It is normal js function with react superpowers to sync of data layer and UI layer, componet will be re-render when state variable changes
+    -  It  allows you to add state management to functional components in React.
+    -  It returns an array with two elements: the current state value and a function to update that state.
+    -  Syntax: `const [state, setState] = useState(initialState);`
+    -  When you call the setter function (e.g., setState), React schedules a re-render of the component with the updated state value.
+
+-   useEffect() :
+    -   It is a hook that lets you perform side effects in functional components.
+    -   It accepts two arguments: a callback function to run the side effect and an optional array of dependencies.
+    -   syntax: `useEffect(() => { ... }, [dependencies]);`
+    -   It runs side effects i.e callback function after rendering the component.
     -   Without dependency array : Runs after every render.
     -   With dependency array : runs uns when dependencies changes
     -   [] empty dependency array : runs only once after the initial render.
--   The useEffect hook in React can return an optional cleanup function
--   React’s state hooks are tied to the component that calls the custom hook. When the state in the hook changes, React re-renders the parent component 
-    updating the UI with the new data.
+    -   The useEffect hook in React can return an optional cleanup function. to clean up side effects before the component unmounts or before the effect runs again.
+    -   ex: 
+        `useEffect(() => { 
+            const timer = setInterval(() => { 
+                console.log("Tick"); 
+            }, 1000); 
+            return () => { clearInterval(timer); }; 
+        }, []); `
+    -   If we not cleanup the side effects it may be continue to run in background and may cause memory leaks and unexpected behavior.
+    -   React’s state hooks are tied to the component that calls the custom hook. When the state in the hook changes, React re-renders the parent component 
+        updating the UI with the new data.
+
 -   useRef() : 
     -   It is a hook that provides a way to access and interact with DOM elements or persist values across renders without causing re-renders.
     -   It returns a mutable ref object whose .current property is initialized to the passed argument (initialValue).
     -   The ref object remains the same between renders.
+    -   Syntax: `const myRef = useRef(initialValue);`
     -   Common use cases include accessing DOM elements directly, storing mutable values that do not trigger re-renders, and managing focus or text selection.
+
+-   useMemo() : 
+    -   It is a hook that memoizes the result of a computation and only recomputes it when its dependencies array changes.
+    -   It helps optimize performance by preventing expensive calculations on every render.
+    -   It returns the memoized value.
+    -   Syntax: `const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);`
+    -   Use cases include optimizing expensive calculations, preventing unnecessary re-renders, and memoizing complex objects or arrays.
+    -  Overuse of useMemo can lead to unnecessary complexity and memory usage, so use it when there is a clear performance benefit.
+
+-   React.memo() : 
+    -   It is a higher-order component that memoizes the result of a functional component and prevents unnecessary re-renders.
+    -   It only re-renders the component if its props change.
+    -   Syntax: `const MemoizedComponent = React.memo(Component);`
+    -   Use cases include optimizing functional components that receive the same props frequently.
+    -  Note: Even if we pass the same props as object/array it will re-render because in JS object/array are reference type so their reference will be different even if their content is same.
+    - To avoid this we can use useMemo to memoize the object/array before passing as props.
+
+-   useCallback() : 
+    -   It is a hook that returns a memoized version of a callback function that only changes if one of its dependencies has changed.
+    -   It helps optimize performance by preventing unnecessary re-creations of functions on every render.
+    -   It returns the memoized function.
+    -   Syntax: `const memoizedCallback = useCallback(() => { doSomething(a, b); }, [a, b]);`
+    -   Use cases include passing callback functions to child components, optimizing event handlers, and preventing unnecessary re-renders.
+    -   passing memoized callback functions to child components that are wrapped with React.memo to prevent unnecessary re-renders.
+    -  Overuse of useCallback can lead to unnecessary complexity and memory usage, so use it when there is a clear performance benefit.
+
 -  Custom Hooks: 
     -   Custom hooks can call other hooks (built-in or custom).
     -   It must follow the same rules as regular hooks (e.g., only call hooks at the top level of a function component or another hook).
